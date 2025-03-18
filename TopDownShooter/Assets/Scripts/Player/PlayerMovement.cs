@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerMovement : MonoBehaviour
 {
-
     // Variables
     [SerializeField] private float movementSpeed = 5f;
     private Vector2 movementInput;
@@ -22,14 +22,12 @@ public class PlayerMovement : MonoBehaviour
         playerInputActions = new PlayerIPActions();
 
     }
-
     private void OnEnable()
     {
         playerInputActions.Enable();
         playerInputActions.Player.Move.performed += OnMovementInput;
         playerInputActions.Player.Move.canceled += OnMovementInput;
     }
-
     private void OnDisable()
     {
         playerInputActions.Player.Move.performed -= OnMovementInput;
@@ -42,9 +40,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = movementInput * movementSpeed; 
     }
-
     private void OnMovementInput(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
     }
+
+
 }
