@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - Enemy
+  - Bullet
+  - HpDrop
+  - SpeedDrop
+  - InvincibilityDrop
   layers:
   - Default
   - TransparentFX
