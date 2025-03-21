@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,5 +42,18 @@ public class PlayerShooting : MonoBehaviour
         // Destroys prefab
         Destroy(bullet, 2f);
     }
+    public void AddFireRate(float time)
+    {
+        if (bulletSpeed < 40)
+        {
+            bulletSpeed *= 2;
+            StartCoroutine(FireRateRest(time));
+        }
+    }
 
+    private IEnumerator FireRateRest(float time)
+    {
+        yield return new WaitForSeconds(time);
+        bulletSpeed /= 2;
+    }
 }

@@ -1,5 +1,6 @@
 // Written by Jay Gunderson
 // 03/16/2025
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,5 +46,18 @@ public class PlayerMovement : MonoBehaviour
         movementInput = context.ReadValue<Vector2>();
     }
 
+    public void DoubleMovement(float duration)
+    {
+        if (movementSpeed < 10)
+        {
+            movementSpeed *= 2;
+            StartCoroutine(MovementReset(duration));
+        }
+    }
 
+    private IEnumerator MovementReset(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        movementSpeed /= 2;
+    }
 }

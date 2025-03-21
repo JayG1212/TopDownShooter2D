@@ -24,4 +24,10 @@ public class HPManager : MonoBehaviour
         HP -= damage;        
         UpdateHP();      
     }
+    public void AddHp(int hp)
+    {
+        HP += hp;
+        UpdateHP();
+    }
+
 }

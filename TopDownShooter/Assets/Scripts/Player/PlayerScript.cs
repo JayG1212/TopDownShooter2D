@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
-    public int health = 50;
+    public float health = 50f;
     public HPManager hpManager;  // Reference to HPManager to update UI
-
+    public PlayerMovement movement;
     // This method is called to reduce health when the player takes damage
 
     void Start()
@@ -16,6 +16,11 @@ public class PlayerScript : MonoBehaviour
         if (hpManager == null)
         {
             hpManager = FindObjectOfType<HPManager>();  // Find the HPManager in the scene if not assigned
+            
+        }
+        if (movement)
+        {
+            movement = FindObjectOfType<PlayerMovement>();
         }
     }
 
@@ -32,6 +37,25 @@ public class PlayerScript : MonoBehaviour
             // Call death method or handle player death
             Die();
         }
+    }
+
+    public void AddHealth(float hp) 
+    {
+        if (hp != 50) 
+        {
+         
+            health += hp;
+            if (hpManager != null)
+            {
+                hpManager.AddHp((int)hp);  // Call AddScore which updates HP on UI
+            }
+
+        }
+
+    }
+    public void AddSpeedPowerUp(float speedDuration)
+    {
+        movement.DoubleMovement(speedDuration);
     }
 
     void Die()

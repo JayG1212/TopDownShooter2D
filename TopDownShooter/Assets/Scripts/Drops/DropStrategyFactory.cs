@@ -16,12 +16,10 @@ public static class DropStrategyFactory
             case "SpeedDrop":
                 strategy = new SpeedStrategy();
                 break;
-            case "InvincibilityDrop":
-                strategy = new InvincibilityStrategy();
+            case "FireRateDrop":
+                strategy = new FireRateStrategy();
                 break;
-            default:
-                strategy = new HpStrategy();
-                break;
+          
         }
         return strategy;
     }

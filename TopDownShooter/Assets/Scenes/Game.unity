@@ -41069,6 +41069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   hpManager: {fileID: 2016148448}
+  movement: {fileID: 1511227403}
 --- !u!61 &1511227410
 BoxCollider2D:
   m_ObjectHideFlags: 0

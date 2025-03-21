@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8063360611401796630}
   - component: {fileID: 223445185110195432}
   m_Layer: 0
-  m_Name: InvincibilityDrop
+  m_Name: FireRateDrop
   m_TagString: InvincibilityDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

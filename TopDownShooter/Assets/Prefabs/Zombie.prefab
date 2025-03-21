@@ -132,7 +132,10 @@ MonoBehaviour:
   - {fileID: 6283055323207322583, guid: af3f702a8bf421c4fa9bf691379ea062, type: 3}
   - {fileID: 481001099326314511, guid: e2216764f4c4cf34c96972931b86c8e3, type: 3}
   - {fileID: 1359796080917828004, guid: c2177933914ea8f4893ba033694cd1ff, type: 3}
-  spawnPoints: []
+  drops:
+  - HpDrop
+  - SpeedDrop
+  - FireRateDrop
 --- !u!61 &4312525997018438136
 BoxCollider2D:
   m_ObjectHideFlags: 0

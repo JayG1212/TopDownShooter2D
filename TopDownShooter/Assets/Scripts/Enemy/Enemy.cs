@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour
 {
 
     IDropStrategy dropStrat;
-    public Transform player;  // Reference to the player
-    public Animator animator;  // Reference to the zombie's Animator component
+    public Transform player;  
+    public Animator animator;  
 
     public int enemyHP = 15;
     public bool isDead = false; // Prevents re-triggering animations after death
@@ -23,10 +23,10 @@ public class Enemy : MonoBehaviour
     private EnemyStateMachine currentState; // Tracks the active state
     private Pool pool;  // Reference to the object pool (if using pooling)
 
-    public GameObject[] powerUpPrefabs;  // Array to store different power-up prefabs
-    private float dropChance = 0.5f; // Chance for the power-up to drop (just an example)
+    public GameObject[] powerUpPrefabs;  
+    private float dropChance = 0.5f; 
 
-    public String[] drops= {"HPDrop", "SpeedDrop", "InvinvibilityDrop"};
+    public String[] drops= {"HpDrop", "SpeedDrop", "FireRateDrop"};
     void Start()
     {
         dropStrat = new HpStrategy(); // Default
@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
     {
         if (isDead) return; // Stop updates if dead
 
-        currentState.Update(); // Run the current state's logic
+        currentState.Update(); 
 
 
     }
@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
     {
         if (isDead) return; // Prevent taking damage after death
 
-        if (other.CompareTag("Bullet"))  // Check if the object is tagged "Bullet"
+        if (other.CompareTag("Bullet"))  
         {
             Destroy(other.gameObject);
             TakeDamage(5); // Reduce health
@@ -97,15 +97,23 @@ public class Enemy : MonoBehaviour
 
     void DropPowerUp()
     {
-        int x = Random.Range(0, 3);
+        int x = Random.Range(0, drops.Length);
         string aDrop = drops[x];
-        IDropStrategy strategy = DropStrategyFactory.GetStrategy(aDrop);  // You can select the strategy based on different logic
-        GameObject powerUpPrefab = GetPowerUpPrefab(strategy);  // Get the correct prefab based on the strategy
+        IDropStrategy strategy = DropStrategyFactory.GetStrategy(aDrop); 
+        GameObject powerUpPrefab = GetPowerUpPrefab(strategy);  
 
         if (Random.value <= dropChance) // Chance to drop the power-up
         {
+            Debug.Log("Power-up will drop: " + aDrop);
+
             // Instantiate the power-up at the enemy's position
             Instantiate(powerUpPrefab, transform.position, Quaternion.identity);
+            Debug.Log(aDrop +" Power-up spawned at position: " + transform.position);
+
+        }
+        else
+        {
+            Debug.Log("Power-up did not drop");
         }
 
     }
@@ -114,18 +122,18 @@ public class Enemy : MonoBehaviour
     {
         if (strategy is HpStrategy)
         {
-            // Return the Health power-up prefab (you would assign this in the Inspector)
-            return powerUpPrefabs[0];  // Assuming HpPowerUp is the first prefab in the array
+           
+            return powerUpPrefabs[0];  
         }
         else if (strategy is SpeedStrategy)
         {
             // Return the Speed power-up prefab
-            return powerUpPrefabs[1];  // Assuming SpeedPowerUp is the second prefab
+            return powerUpPrefabs[1]; 
         }
-        else if (strategy is InvincibilityStrategy)
+        else if (strategy is FireRateStrategy)
         {
-            // Return the Invincibility power-up prefab
-            return powerUpPrefabs[2];  // Assuming InvincibilityPowerUp is the third prefab
+            // Return the Fire Rate power-up prefab
+            return powerUpPrefabs[2]; 
         }
         else
         {
