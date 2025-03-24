@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class PlayerScript : MonoBehaviour
     public HPManager hpManager;  // Reference to HPManager to update UI
     public PlayerMovement movement;
     // This method is called to reduce health when the player takes damage
-
+    public ScreenFade screenFade;
     void Start()
     {
         // Ensure HPManager is assigned (you can assign this in the Inspector if public)
@@ -70,7 +71,15 @@ public class PlayerScript : MonoBehaviour
         gameObject.GetComponent<PlayerMovement>().enabled = false;
         gameObject.GetComponent<PlayerAim>().enabled = false;
         Debug.Log("Player Died");
-        SceneManager.LoadScene("Start");
+        screenFade.OnPlayerLose();
+        StartCoroutine(GameOver());
+        
 
+    }
+
+    private IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(3f); // Wait for 5 seconds
+        SceneManager.LoadScene("Start");
     }
 }
