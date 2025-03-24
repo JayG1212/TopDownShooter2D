@@ -26,8 +26,10 @@ public class HPManager : MonoBehaviour
     }
     public void AddHp(int hp)
     {
-        HP += hp;
-        UpdateHP();
+     
+            HP += hp;
+            UpdateHP();
+       
     }
 
 }

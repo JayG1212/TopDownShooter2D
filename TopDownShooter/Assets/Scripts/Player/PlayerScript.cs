@@ -41,7 +41,7 @@ public class PlayerScript : MonoBehaviour
 
     public void AddHealth(float hp) 
     {
-        if (hp != 50) 
+        if (health < 50) 
         {
          
             health += hp;

@@ -40575,7 +40575,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -244.47043, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -40858,7 +40858,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1511227400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40998,7 +40998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6847738088364986932, guid: 08198d29fea5ccf4596b65bb1209927c, type: 3}
   shootingPoint: {fileID: 183146476}
-  bulletSpeed: 20
+  bulletSpeed: 15
 --- !u!95 &1511227407
 Animator:
   serializedVersion: 5

@@ -44,9 +44,9 @@ public class PlayerShooting : MonoBehaviour
     }
     public void AddFireRate(float time)
     {
-        if (bulletSpeed < 40)
+        if (bulletSpeed < 45)
         {
-            bulletSpeed *= 2;
+            bulletSpeed *= 3;
             StartCoroutine(FireRateRest(time));
         }
     }
@@ -54,6 +54,6 @@ public class PlayerShooting : MonoBehaviour
     private IEnumerator FireRateRest(float time)
     {
         yield return new WaitForSeconds(time);
-        bulletSpeed /= 2;
+        bulletSpeed /= 3;
     }
 }
