@@ -126,6 +126,7 @@ MonoBehaviour:
   animator: {fileID: 7503261476942488780}
   enemyHP: 15
   isDead: 0
+  bloodEffect: {fileID: 6431593223436732159, guid: 21a01d81523f970418e02d0fd7a6edd3, type: 3}
   attackRange: 1
   chaseRange: 1000
   powerUpPrefabs:

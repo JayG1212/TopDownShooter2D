@@ -6,40 +6,42 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public TMP_Text scoreText;  // Reference to the TextMeshPro object where the score will be displayed
-    private int score = 0;  // Current score
-    public int Score
-    {
-        get { return this.score; }
-    }
 
-    // Start is called before the first frame update
+    public TMP_Text scoreText;
+    private int score = 0;
+
+    public int Score => score;
+
     void Start()
     {
-        LoadScore();  // Load the saved score when the game starts
+        score = 0;
         UpdateScore();
     }
 
-    private  void UpdateScore()
+    private void UpdateScore()
     {
         scoreText.text = "Points: " + score;
     }
 
     public void AddScore(int points)
     {
-        score += points;        // Increase the score by the specified points
-        UpdateScore();      // Update the UI text to reflect the new score
-    }
-    public void SaveScore()
-    {
-        PlayerPrefs.SetInt("RecentScore", score);  // Save the score to PlayerPrefs
-        PlayerPrefs.Save();  // Make sure the data is saved immediately
+        score += points;
+        UpdateScore();
     }
 
-    // Method to load the score from PlayerPrefs
-    private void LoadScore()
+    public void SaveScore()
     {
-        score = PlayerPrefs.GetInt("RecentScore", 0);  // Load the saved score (defaults to 0 if not found)
+        int highScore = PlayerPrefs.GetInt("HighScore", 0);
+        if (score > highScore)
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+            PlayerPrefs.Save();
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteAll(); // Clears all saved scores when the game closes
     }
 
 }

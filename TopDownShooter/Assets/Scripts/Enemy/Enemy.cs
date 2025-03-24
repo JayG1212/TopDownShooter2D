@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-
+    ScoreManager scoreManager;
     IDropStrategy dropStrat;
     public Transform player;  
     public Animator animator;  
@@ -14,8 +14,8 @@ public class Enemy : MonoBehaviour
     public int enemyHP = 15;
     public bool isDead = false; // Prevents re-triggering animations after death
 
-    
-    
+
+    public GameObject bloodEffect;
     public int attackRange = 1;  // Range at which the zombie will attack
     public float chaseRange = 1000f;
     
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
         dropStrat = new HpStrategy(); // Default
         animator = GetComponent<Animator>();  // Get the Animator component
         player = GameObject.FindGameObjectWithTag("Player").transform; // Find player by tag
-
+        scoreManager = FindObjectOfType<ScoreManager>();
         ChangeState(new IdleState(this)); // Start in Idle state
         pool = Pool.singleton;  // Initialize the pool
 
@@ -81,19 +81,25 @@ public class Enemy : MonoBehaviour
         if(enemyHP <= 0)
         {
             DropPowerUp();  // Drop a power-up before dying
-
             print("The Enemy is Dead");
             ChangeState(new DeadState(this));
-
+            scoreManager.AddScore(100);
 
         }
         else
         {
             print("The Enemy was hit");
-
+            GameObject effect = Instantiate(bloodEffect, transform.position, transform.rotation);
+            StartCoroutine(RemoveBloodEffect(effect));
         }
     }
 
+    private IEnumerator RemoveBloodEffect(GameObject effect)
+    {
+        yield return new WaitForSeconds(1f); // Waits for 2 seconds
+        Destroy(effect); // Example: Destroys the blood effect object
+
+    }
 
     void DropPowerUp()
     {

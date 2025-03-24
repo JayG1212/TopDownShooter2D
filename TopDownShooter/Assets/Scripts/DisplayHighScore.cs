@@ -10,8 +10,8 @@ public class DisplayScore : MonoBehaviour
 
     void Start()
     {
-        int recentScore = PlayerPrefs.GetInt("RecentScore", 0);  // Get the saved score (defaults to 0 if not found)
-        highScoreText.text = "Your Score: " + recentScore;
+        int recentScore = PlayerPrefs.GetInt("HighScore", 0);  // Get the saved score (defaults to 0 if not found)
+        highScoreText.text = "High Score: " + recentScore;
 
     }
 
